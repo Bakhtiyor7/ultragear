@@ -1,7 +1,7 @@
 console.log("web serverni boshlash");
 const express = require("express");
 const app = express();
-// const res = require("express/lib/response");
+const router = require("./router");
 
 //mongodb chaqirish
 const mongodb = require("mongodb");
@@ -19,6 +19,9 @@ app.use(express.urlencoded({
 //3: view
 app.set("views", "views");
 app.set("view engine", "ejs");
+
+// routing codes
+app.use("/", router) 
 
 
 module.exports = app;
