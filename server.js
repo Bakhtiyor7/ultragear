@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config(); // ESDAN CHIQARMANG !!!!!!!!!
 
 const http = require("http");
 
