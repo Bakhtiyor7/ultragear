@@ -58,7 +58,7 @@ const memberSchema = new mongoose.Schema({
         enum: {
             values: ordernary_enums,
             message: "{VALUE} is not among permitted values"
-        }
+        },
     },
     mb_views: {
         type: Number, 
