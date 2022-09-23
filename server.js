@@ -3,20 +3,19 @@ dotenv.config(); // ESDAN CHIQARMANG !!!!!!!!!
 
 const http = require("http");
 
-const mongodb = require("mongodb");
+const mongoose = require("mongoose");
 
 let db;
 const connectionString = process.env.MONGO_URL;
 
-mongodb.connect(connectionString, { 
+mongoose.connect(connectionString, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true
-}, (err, client) => {
+}, (err, goose) => {
     if(err) console.log("ERROR on connecting MongoDB");
     else {
         console.log("Mongodb connected successfully");
-        module.exports = client;
-
+        console.log(goose );
         const app = require("./app");
         const server = http.createServer(app);
 let PORT = process.env.PORT || 3003;

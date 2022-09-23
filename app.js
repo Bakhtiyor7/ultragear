@@ -1,11 +1,8 @@
 console.log("web serverni boshlash");
 const express = require("express");
 const app = express();
-const router = require("./router");
+const router = require("./router.js");
 
-//mongodb chaqirish
-const mongodb = require("mongodb");
-const db = require("./server").db();
 
 //Kirish kodlari
 app.use(express.static("public"));
@@ -18,7 +15,7 @@ app.use(express.urlencoded({
 
 //3: view
 app.set("views", "views");
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); 
 
 // routing codes
 app.use("/", router) 
