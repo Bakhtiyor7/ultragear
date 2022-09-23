@@ -78,9 +78,12 @@ const memberSchema = new mongoose.Schema({
     mb_subscriber_cnt: {
         type: Number, 
         required: false,
-        default: 0
+        default: 0,
     },
-    {timestamps: true}
-});
+},
+{timestamps: true}
+);
+
+
 
 module.exports = mongoose.model("Member", memberSchema);
