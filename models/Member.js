@@ -1,5 +1,6 @@
 const MemberModel = require("../schema/member.model.js");
 const Definer = require("../lib/mistake");
+const assert = require("assert");
 
 class Member {
     constructor() {
@@ -26,6 +27,31 @@ async signupData(input) {
         throw err;
     }
 }
+
+async loginData(input) {
+    try {
+        const member = await this.memberModel
+        .findOne(
+            {mb_nick: input.mb_nick}, 
+            {mb_nick: 1, mb_password: 1})
+        .exec();
+
+        assert.ok(member, Definer.err_auth3);
+        
+        const isMatch = input.mb_password === member.mb_password;
+        assert.ok(isMatch, Definer.err_auth4);
+
+        return await this.memberModel
+        .findOne({
+            mb_nick: input.mb_nick
+        })
+        .exec();
+    } catch(err) {
+        throw err;
+    }
+}
+
+
 };
 
 
