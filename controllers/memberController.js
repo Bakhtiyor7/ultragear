@@ -9,6 +9,8 @@ memberController.signup = async (req, res) => {
       member = new Member(),
       new_member = await member.signupData(data);
 
+    //TODO: AUTHENTICATE BASED ON JWT
+
     res.json({ state: "succeed", data: new_member });
   } catch (err) {
     console.log(`ERROR, cont/signup, ${err.message}`);
@@ -21,7 +23,7 @@ memberController.login = async (req, res) => {
     console.log("POST: cont/login");
     const data = req.body,
       member = new Member(),
-      result = await member.loginData(data); 
+      result = await member.loginData(data);
 
     res.json({ state: "succeed", data: result });
   } catch (err) {

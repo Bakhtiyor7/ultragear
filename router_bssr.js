@@ -8,21 +8,16 @@ const restaurantController = require("./controllers/restaurantController");
  */
 
 // memberga dahldor routerlar
-router_bssr.get("/signup", restaurantController.getSignupMyRestaurant);
-router_bssr.post("/signup", restaurantController.signupProcess);
+router_bssr
+  .get("/signup", restaurantController.getSignupMyRestaurant)
+  .post("/signup", restaurantController.signupProcess);
 
-router_bssr.get("/login", restaurantController.getLoginMyRestaurant);
-router_bssr.post("/login", restaurantController.loginProcess);
+router_bssr
+  .get("/login", restaurantController.getLoginMyRestaurant)
+  .post("/login", restaurantController.loginProcess);
 
 router_bssr.get("/logout", restaurantController.logout);
 
-// boshqa routerlar
-router_bssr.get("/menu", (req, res) => {
-  res.send("Menu safifasidasiz");
-});
-
-router_bssr.get("/community", (req, res) => {
-  res.send("Community sahifasidasiz");
-});
+router_bssr.get("/products/menu", restaurantController.getMyRestaurantData);
 
 module.exports = router_bssr;
