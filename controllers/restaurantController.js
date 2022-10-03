@@ -77,3 +77,5 @@ restaurantController.checkSessions = (req, res) => {
     res.json({ state: "fail", message: "You are not authenticated." });
   }
 };
+
+//adding changes
