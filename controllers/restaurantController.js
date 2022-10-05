@@ -5,7 +5,6 @@ let restaurantController = module.exports;
 restaurantController.getMyRestaurantData = async (req, res) => {
   try {
     console.log("GET: cont/getMyRestaurantData");
-    // TODO: Get my restaurant products
     res.render("restaurant-menu");
   } catch (err) {
     console.log(`ERROR, cont/getMyRestaurantData, ${err.message}`);
