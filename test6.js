@@ -1,8 +1,16 @@
 /**
- * Members array ichidan "david" va "shawn" bo'lsa ajratib bering
+ * Members array ichidan "david" va "orif" bo'lsa ajratib bering
  */
 
 const members = ["oscar", "david", "walter", "orif", "shawn", "rawshan"];
+const test = ["david", "shawn"];
 
-console.log(members.includes("david", "shawn"));
-// kutilgan natija: true
+const result = members.filter((ele) => {
+  if (test.includes(ele)) {
+    return true;
+  } else {
+    false;
+  }
+});
+
+console.log(result);
