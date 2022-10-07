@@ -3,7 +3,7 @@
  */
 
 const members = ["oscar", "david", "walter", "orif", "shawn", "rawshan"];
-const test = ["david", "shawn"];
+const test = ["david", "orif"];
 
 const result = members.filter((ele) => {
   if (test.includes(ele)) {
