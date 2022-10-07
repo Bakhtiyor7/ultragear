@@ -3,10 +3,10 @@
  * va agar bosh qiymatlar bolsa ularni delete qiilib qiymati bor arrayni qaytarsin
  */
 
-var numbers = [1, 3, 4, 5, , 6, null, 8, 9, 10, , , 11, null];
+let numbers = [1, 2, 3, 4, , 5, null, 6, 7, 8, , , 9, null];
 
-var Array = numbers.filter(function (ele) {
+let myArray = numbers.filter(function (ele) {
   return ele != null;
 });
 
-console.log(Array);
+console.log(myArray);

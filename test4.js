@@ -6,15 +6,13 @@
  */
 
 const obj = {
-  name: "Leo",
-  password: "12345",
-  insertUser() {
-    if (this.name.length <= 4 || this.password.length <= 4) {
+  insertUser(name, password) {
+    if (name.length <= 4 || password.length <= 4) {
       console.error("you need to enter more than 4 characters!");
     } else {
-      console.log("Xush kelibsiz ", this.name);
+      console.log(`Xush kelibsiz ${name}!`);
     }
   },
 };
 
-obj.insertUser();
+obj.insertUser("Leonardo", "Leo1998");

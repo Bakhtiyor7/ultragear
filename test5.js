@@ -3,13 +3,15 @@
  * Bu function bizga usha ikkinchida kiritilgan argumentdan
  * (yani string variable) tashqari qiymatlarni qaytarsin
  */
-const array = ["Navoi", "Surkhandarya", "Jizzakh"];
 
-function test(a, b) {
-  b = a.splice(2);
+let array = ["ali", "mahliyoni", "sevadi"];
+let str = "sevadi";
+
+function result(a, b) {
+  a = a.filter(function (ele) {
+    return ele !== b;
+  });
   console.log(a);
-  //   console.log(b);
-  //Jizzakh ni arraydan ajratib alohida variablega saqlab oldik.
 }
 
-test(array, "");
+result(array, str);
