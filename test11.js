@@ -7,3 +7,7 @@ function convertorFunction(a) {
 }
 
 console.log(convertorFunction([]));
+
+function func() {
+  const f1 = "string";
+}

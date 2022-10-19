@@ -41,7 +41,7 @@
               <td><%= value.product_name %></td>
               <td><%= value.product_collection %></td>
               <td>
-                <%= value.product_collection === 'drink' ? value.product_volumne
+                <%= value.product_collection === 'drink' ? value.product_volume
                 : value.product_size %>
               </td>
               <td><%= value.product_price %></td>
@@ -57,7 +57,13 @@
           </table>
         </div>
 
-        <form></form>
+        <form onsubmit="return validateForm()" action="resto//products/create" method="POST"
+        class="dish_container" enctype="multipart/form-data">
+        <div class="long_input" style="align-items: flex-end; margin-bottom: 25px;">
+          <span class="new_dish_txt">Yangi Taom</span>
+        </div>
+        </form>
+
       </div>
     </div>
   </div>

@@ -16,6 +16,7 @@ class Product {
       });
       assert.ok(result, Definer.general_err1);
       console.log(result);
+      return result;
     } catch (err) {
       throw err;
     }
