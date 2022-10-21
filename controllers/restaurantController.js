@@ -53,7 +53,7 @@ restaurantController.signupProcess = async (req, res) => {
     req.session.member = result;
     res.redirect("/resto/products/menu");
   } catch (err) {
-    console.log(`ERROR, cont/signup, ${err.message}`);
+    console.log(`ERROR, cont/sign-up, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
@@ -115,5 +115,29 @@ restaurantController.checkSessions = (req, res) => {
     res.json({ state: "succeed", data: req.session.member });
   } else {
     res.json({ state: "fail", message: "You are not authenticated." });
+  }
+};
+
+restaurantController.validateAdmin = (req, res, next) => {
+  if (req.session?.member?.mb_type === "ADMIN") {
+    req.member = req.session.member;
+    next();
+  } else {
+    const html = `<script>
+       alert('Admin page: Persmission denied!');
+       window.location.replace('/resto');
+     </script>`;
+    res.end(html);
+  }
+};
+
+restaurantController.getAllRestaurants = (req, res) => {
+  try {
+    console.log("GET cont/getAllRestaurants");
+    //todo: hamma restoranlarni dbdan chaqiramiz
+    res.render("all-restaurants");
+  } catch (err) {
+    console.log(`ERROR, cont/getAllRestaurants, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
   }
 };
