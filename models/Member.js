@@ -34,7 +34,13 @@ class Member {
   async loginData(input) {
     try {
       const member = await this.memberModel
-        .findOne({ mb_nick: input.mb_nick }, { mb_nick: 1, mb_password: 1 })
+        .findOne(
+          {
+            mb_nick: input.mb_nick,
+            mb_status: { $in: ["ACTIVE", "ONPAUSE"] },
+          },
+          { mb_nick: 1, mb_password: 1 }
+        )
         .exec();
 
       assert.ok(member, Definer.err_auth3);
