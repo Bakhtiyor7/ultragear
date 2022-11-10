@@ -92,6 +92,7 @@ memberController.getChosenMember = async (req, res) => {
   try {
     console.log("GET cont/getChosenMember");
     const id = req.params.id;
+    console.log("id:::", id);
 
     const member = new Member();
     const result = await member.getChosenMemberData(req.member, id);
