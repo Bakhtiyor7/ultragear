@@ -77,6 +77,7 @@ class Member {
         .aggregate([
           { $match: { _id: id, mb_status: "ACTIVE" } },
           { $unset: "mb_password" },
+          // todo: check if auth member liked the chosen product
         ])
         .exec();
 
