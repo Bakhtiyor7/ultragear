@@ -18,7 +18,7 @@ memberController.signup = async (req, res) => {
       maxAge: 6 * 3600 * 1000,
       httpOnly: true,
     });
-    res.json({ state: "succeed", data: new_member });
+    res.json({ state: "success", data: new_member });
   } catch (err) {
     console.log(`ERROR, cont/signup, ${err.message}`);
     res.json({ state: "fail", message: err.message });
@@ -49,7 +49,7 @@ memberController.login = async (req, res) => {
 memberController.logout = (req, res) => {
   console.log("GET cont/logout");
   res.cookie("access_token", null, { maxAge: 0, httpOnly: true });
-  res.json({ state: "succeed", data: "logout successful" });
+  res.json({ state: "success", data: "logout successful" });
 };
 
 // WEB token method
@@ -97,7 +97,7 @@ memberController.getChosenMember = async (req, res) => {
     const member = new Member();
     const result = await member.getChosenMemberData(req.member, id);
 
-    res.json({ state: "succeed", data: result });
+    res.json({ state: "success", data: result });
   } catch (err) {
     console.log(`ERROR, cont/getChosenMember, ${err.message}`);
     res.json({ state: "fail", message: err.message });
