@@ -79,7 +79,7 @@ class Order {
       order_id = shapeIntoMongooseObjectId(order_id);
       item._id = shapeIntoMongooseObjectId(item._id);
 
-      const order_item = new this.orderModel({
+      const order_item = new this.orderItemModel({
         item_quantity: item["quantity"],
         item_price: item["price"],
         order_id: order_id,
@@ -91,6 +91,40 @@ class Order {
     } catch (err) {
       console.log(err);
       throw new Error(Definer.order_err2);
+    }
+  }
+  async getMyOrdersData(member, query) {
+    try {
+      const mb_id = shapeIntoMongooseObjectId(member._id),
+        order_status = query.status.toUpperCase(),
+        matches = { mb_id: mb_id, order_status: order_status };
+
+      const result = await this.orderModel
+        .aggregate([
+          { $match: matches },
+          { $sort: { createdAt: -1 } },
+          {
+            $lookup: {
+              from: "orderitems",
+              localField: "_id",
+              foreignField: "order_id",
+              as: "order_items",
+            },
+          },
+          {
+            $lookup: {
+              from: "products",
+              localField: "order_items.product_id",
+              foreignField: "_id",
+              as: "product_data",
+            },
+          },
+        ])
+        .exec();
+      console.log("result:::", result);
+      return result;
+    } catch (err) {
+      throw err;
     }
   }
 }
