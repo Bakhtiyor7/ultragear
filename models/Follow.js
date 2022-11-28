@@ -160,15 +160,6 @@ class Follow {
       throw err;
     }
   }
-
-  async getMemberFollowersData(member, like_ref_id, group_type) {
-    try {
-      const mb_id = shapeIntoMongooseObjectId(member._id);
-      like_ref_id = shapeIntoMongooseObjectId(like_ref_id);
-    } catch (err) {
-      throw err;
-    }
-  }
 }
 
 module.exports = Follow;
