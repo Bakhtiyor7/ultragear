@@ -28,8 +28,14 @@ router.post(
   memberController.retrieveAuthMember,
   memberController.likeMemberChosen
 );
-// product related routers
+router.post(
+  "/member/update",
+  memberController.retrieveAuthMember,
+  uploader_member.single("mb_image"),
+  memberController.updateMemeber
+);
 
+// product related routers
 router.post(
   "/products",
   memberController.retrieveAuthMember,

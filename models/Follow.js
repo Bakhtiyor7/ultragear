@@ -46,7 +46,7 @@ class Follow {
         subscriber_id: subscriber_id,
       });
       return await new_follow.save();
-    } catch (err) {
+    } catch (mongo_err) {
       console.log(mongo_err);
       throw new Error(Definer.follow_err2);
     }
