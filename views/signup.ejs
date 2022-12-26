@@ -6,7 +6,7 @@
   <form
     onsubmit="return validateSignupForm()"
     class="login_container"
-    action="/resto/sign-up"
+    action="/brand/sign-up"
     method="POST"
     enctype="multipart/form-data"
   >
@@ -14,11 +14,11 @@
       <div class="login_top">
         <span>Ro'yhatdan o'tish</span>
         <div>
-          Bosh sahifaga qaytish <a href="/resto" style="color: #6440fb">Home</a>
+          Bosh sahifaga qaytish <a href="/brand" style="color: #6440fb">Home</a>
         </div>
         <p>
           Ro'yhatdan allaqachon o'tganmisiz?
-          <a href="/resto/login" style="color: #6440fb">Login</a>
+          <a href="/brand/login" style="color: #6440fb">Login</a>
         </p>
       </div>
 
@@ -76,7 +76,7 @@
         <div class="media-frame">
           <img class="upload_img_frame" src="/images/default_resto.jpeg" />
           <div class="upload_container">
-            <span class="media_text">Restoran Rasmi</span>
+            <span class="media_text">Brend Rasmi</span>
             <div class="filebox bs3-primary preview-image">
               <input
                 class="upload-name"
@@ -87,8 +87,8 @@
               <input
                 type="file"
                 id="input_file"
-                name="restaurant_img"
-                class="upload-hidden form-control-file restaurant_img"
+                name="brand_img"
+                class="upload-hidden form-control-file brand_img"
               />
             </div>
             <p class="thumbnail_desc">
@@ -107,10 +107,10 @@
 </body>
 
 <script>
-  $(function () {
+  $(function() {
     let fileTarget = $(".filebox .upload-hidden");
     let filename = "";
-    fileTarget.on("change", function () {
+    fileTarget.on("change", function() {
       if (window.FileReader) {
         const uploading_file = $(this)[0].files[0];
         const fileType = uploading_file["type"];
@@ -130,7 +130,9 @@
         }
       }
 
-      $(this).siblings(".upload-name").val(filename);
+      $(this)
+        .siblings(".upload-name")
+        .val(filename);
     });
   });
 
@@ -139,7 +141,7 @@
     const mb_phone = $(".mb_phone").val();
     const mb_password = $(".mb_password").val();
     const mb_confirm_password = $(".mb_confirm_password").val();
-    const restaurant_img = $(".restaurant_img").get(0).files[0] ?? null;
+    const brand_img = $(".brand_img").get(0).files[0] ?? null;
 
     if (
       mb_nick == "" ||
@@ -147,15 +149,15 @@
       mb_password == "" ||
       mb_confirm_password == ""
     ) {
-      alert("Iltimos hamma ma'lumotlarni kiriting1!");
+      alert("Please insert all informations correctly!");
       return false;
     } else if (mb_password !== mb_confirm_password) {
-      alert(`Iltimos passwordni to'g'ri kiriting!`);
+      alert(`Please insert a correct password!`);
       return false;
     }
 
-    if (!restaurant_img) {
-      alert("Iltimos rasmni yuklang!");
+    if (!brand_img) {
+      alert("Please upload a picture!");
       return false;
     }
 

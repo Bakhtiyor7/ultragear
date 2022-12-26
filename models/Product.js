@@ -17,10 +17,8 @@ class Product {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
 
       let match = { product_status: "PROCESS" };
-      if (data.restaurant_mb_id) {
-        match["restaurant_mb_id"] = shapeIntoMongooseObjectId(
-          data.restaurant_mb_id
-        );
+      if (data.brand_mb_id) {
+        match["brand_mb_id"] = shapeIntoMongooseObjectId(data.brand_mb_id);
         match["product_collection"] = data.product_collection;
       }
 
@@ -71,11 +69,11 @@ class Product {
     }
   }
 
-  async getAllProductsDataResto(member) {
+  async getAllProductsDataBrand(member) {
     try {
       member._id = shapeIntoMongooseObjectId(member._id);
       const result = await this.productModel.find({
-        restaurant_mb_id: member._id,
+        brand_mb_id: member._id,
       });
       assert.ok(result, Definer.general_err1);
       console.log(result);
@@ -87,7 +85,7 @@ class Product {
 
   async addNewProductData(data, member) {
     try {
-      data.restaurant_mb_id = shapeIntoMongooseObjectId(member._id);
+      data.brand_mb_id = shapeIntoMongooseObjectId(member._id);
 
       const new_product = new this.productModel(data);
       const result = await new_product.save();
@@ -105,7 +103,7 @@ class Product {
       mb_id = shapeIntoMongooseObjectId(mb_id);
 
       const result = await this.productModel
-        .findOneAndUpdate({ _id: id, restaurant_mb_id: mb_id }, updated_data, {
+        .findOneAndUpdate({ _id: id, brand_mb_id: mb_id }, updated_data, {
           runValidators: true,
           lean: true,
           returnDocument: "after",

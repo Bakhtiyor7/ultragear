@@ -7,13 +7,13 @@
     <div class="group_name">
       <ul class="nav justify-content-center">
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/resto">Home</a>
+          <a class="nav-link active" href="/brand">Home</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/resto/products/menu">MyResto</a>
+          <a class="nav-link" href="/brand/products/menu">MyBrand</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/resto/logout">Logout</a>
+          <a class="nav-link" href="/brand/logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -22,28 +22,25 @@
       <div class="restaurant_container">
         <div class="dishs_table">
           <span class="new_dish_txt">
-            <%= member.mb_nick.toUpperCase() %> Taomlar Menyusi
+            <%= member.mb_nick.toUpperCase() %> products menu
           </span>
           <table class="table table-bordered table-hover">
             <thead class="thead-light">
               <th scope="col">T/r</th>
-              <th scope="col">Taom nomi</th>
-              <th scope="col">Taom turi</th>
-              <th scope="col">Taom Hajmi</th>
-              <th scope="col">Taom Narhi</th>
-              <th scope="col">Taom qoldiq miqdori</th>
-              <th scope="col">Taom Holati</th>
+              <th scope="col">Product name</th>
+              <th scope="col">Product type</th>
+              <th scope="col">Product count</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Product availability</th>
+              <th scope="col">Product status</th>
             </thead>
 
-            <% restaurant_data.map((value, key) => { %>
+            <% brand_data.map((value, key) => { %>
             <tbody style="background: white">
               <td><%= key + 1 %></td>
               <td><%= value.product_name %></td>
               <td><%= value.product_collection %></td>
-              <td>
-                <%= value.product_collection === 'drink' ? value.product_volume
-                : value.product_size %>
-              </td>
+              <td> <%= value.product_collection %></td>
               <td><%= value.product_price %></td>
               <td><%= value.product_left_cnt %></td>
               <td>
@@ -57,52 +54,52 @@
           </table>
 
           <div class="long_input" style="align-items: flex-end; margin-bottom: 25px;">
-            <button class="btn btn-primary hiding_btn">Taom Qo'shish</button>
+            <button class="btn btn-primary hiding_btn">Add Product</button>
           </div>
 
         </div>
 
-        <form onsubmit="return validateForm()" action="/resto//products/create" method="POST"
+        <form onsubmit="return validateForm()" action="/brand//products/create" method="POST"
         class="dish_container" enctype="multipart/form-data">
         <div class="long_input" style="display: flex; align-items: center;">
-          <span class="new_dish_txt">Yangi Taom</span>
+          <span class="new_dish_txt">New Product</span>
         </div>
 
 
         <div>
           <div class="long_input">
-            <label>Taom nomi</label>
-            <input type="text" placeholder="Taom nomi" name="product_name" class="product_name">
+            <label>Product name</label>
+            <input type="text" placeholder="Product Name" name="product_name" class="product_name">
           </div>
           <input name="product_status" value="PAUSED" class="product_status" hidden>
         </div>
 
         <div class="half_input_frame">
           <div class="half_input">
-            <label>Taom Narxi</label>
-            <input type="number" placeholder="Taom narxi" name="product_price" class="product_price">
+            <label>Product Price</label>
+            <input type="number" placeholder="Price" name="product_price" class="product_price">
           </div>
           <div class="half_input">
-            <label>Taom Qolqid Miqdori</label>
-            <input type="number" placeholder="Taom Mavjud Miqdori" name="product_left_cnt" class="product_left_cnt">
+            <label>Product availability</label>
+            <input type="number" placeholder="availability" name="product_left_cnt" class="product_left_cnt">
           </div>
         </div>
 
         <div class="half_input_frame">
 
           <div class="half_input">
-            <label>Taom Turi</label>
+            <label>Product type</label>
             <select class="product_collection" name="product_collection">
-              <option value="dish" selected>Taom</option>
-              <option value="salad">Salad</option>
-              <option value="dessert">Dessert</option>
-              <option value="drink">Ichimlik</option>
-              <option value="etc">Boshqa</option>
+              <option value="keyboard" selected>Keyboard</option>
+              <option value="mouse">Mouse</option>
+              <option value="headset">headset</option>
+              <option value="earphone">earphone</option>
+              <option value="etc">other</option>
             </select>
           </div>
 
-          <div class="half_input" id="product_size">
-            <label>Taom Hajmi</label>
+          <!-- <div class="half_input" id="product_size">
+            <label>Product count</label>
             <select class="product_size" name="product_size">
               <option value="small">Kichik</option>
               <option value="normal" selected>O'rtacha</option>
@@ -120,16 +117,16 @@
               <option value="1.5">1.5 litr</option>
               <option value="2">2 litr</option>
             </select>
-          </div>
+          </div> -->
         </div>
 
         <div class="long_input">
-          <label>Taom Haqida</label>
+          <label>Product product_description</label>
           <textarea name="product_description" class="product_description"></textarea>
         </div>
 
         <div class="img_frame">
-          <label>Taom rasmlari</label>
+          <label>Product images</label>
           <div class="media-frame">
             <div class="upload_img_box">
               <img src="/images/upload.svg" class="1" id="image_section_1">
@@ -156,12 +153,12 @@
               <input type="file" id="file" name="product_images" class="image_five"
               onchange="previewFileHandler(this, 5)">
             </div>
-            <input value="<%= member._id %>" name="restaurant_id" class="restaurant_id" hidden>
+            <input value="<%= member._id %>" name="brand_id" class="brand_id" hidden>
           </div>
         </div>
 
         <div class="long_input" style="align-items: flex-end; margin-bottom: 25px;">
-          <button type="submit" class="btn btn-primary" id="create_product">Chop Etish</button>
+          <button type="submit" class="btn btn-primary" id="create_product">Submit</button>
         </div>
 
 
@@ -176,13 +173,6 @@
       
       $(".product_collection").on("change", () => {
         const selected_value = $(".product_collection").val();
-        if(selected_value === 'drink') {
-          $("#product_volume").show();
-          $("#product_size").hide();
-        } else {
-          $("#product_volume").hide();
-          $("#product_size").show();
-        }
       });
 
       $(".hiding_btn").on("click", () => {
@@ -197,7 +187,7 @@
         
         try {
           const response = await axios.post(
-            `/resto/products/edit/${id}`, 
+            `/brand/products/edit/${id}`, 
             {id: id, product_status: product_status});
           const result = response.data;
           console.log("result:", result);
@@ -218,7 +208,7 @@
     }); 
 
     function validateForm() {
-      const restaurant_mb_id = $(".restaurant_mb_id").val(),
+      const brand_mb_id = $(".brand_mb_id").val(),
         product_name = $(".product_name").val(),
         product_price = $(".product_price").val(),
         product_left_cnt= $(".product_left_cnt").val(),
@@ -226,7 +216,7 @@
         product_description = $(".product_description").val(),
         product_status = $(".product_status").val();
 
-        if(restaurant_mb_id == '' || product_name == '' || product_price == '' || product_left_cnt == '' || 
+        if(brand_mb_id == '' || product_name == '' || product_price == '' || product_left_cnt == '' || 
           product_collection == '' || product_description == '' || product_status == '' ) {
             alert(`Iltimos hamma ma'lumotlarni kiriting!`);
             return false;

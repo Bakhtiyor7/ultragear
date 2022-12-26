@@ -7,15 +7,15 @@ const Definer = require("../lib/mistake.js");
 const MemberModel = require("../schema/member.model.js");
 const Member = require("./Member.js");
 
-class Restaurant {
+class Brand {
   constructor() {
     this.memberModel = MemberModel;
   }
 
-  async getRestaurantsData(member, data) {
+  async getBrandsData(member, data) {
     try {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
-      let match = { mb_type: "RESTAURANT", mb_status: "ACTIVE" };
+      let match = { mb_type: "BRAND", mb_status: "ACTIVE" };
       let aggregationQuery = [];
       data.limit = data["limit"] * 1;
       data.page = data["page"] * 1;
@@ -49,7 +49,7 @@ class Restaurant {
     }
   }
 
-  async getChosenRestaurantData(member, id) {
+  async getChosenBrandData(member, id) {
     try {
       id = shapeIntoMongooseObjectId(id);
 
@@ -72,11 +72,11 @@ class Restaurant {
     }
   }
 
-  async getAllRestaurantsData() {
+  async getAllBrandsData() {
     try {
       let result = await this.memberModel
         .find({
-          mb_type: "RESTAURANT",
+          mb_type: "BRAND",
         })
         .exec();
 
@@ -87,7 +87,7 @@ class Restaurant {
     }
   }
 
-  async updateRestaurantByAdmin(update_data) {
+  async updateBrandByAdmin(update_data) {
     try {
       const id = shapeIntoMongooseObjectId(update_data?.id);
       const result = await this.memberModel
@@ -105,4 +105,4 @@ class Restaurant {
   }
 }
 
-module.exports = Restaurant;
+module.exports = Brand;

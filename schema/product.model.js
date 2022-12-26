@@ -41,29 +41,6 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    product_size: {
-      type: String,
-      default: "normal",
-      required: function() {
-        const sized_list = ["dish", "salad", "dessert"];
-        return sized_list.includes(this.product_collection);
-      },
-      enum: {
-        values: product_size_enums,
-        message: "{VALUE} is not among permitted enum values",
-      },
-    },
-    product_volume: {
-      type: Number,
-      default: 1,
-      required: function() {
-        return this.product_collection === "drink";
-      },
-      enum: {
-        values: product_volume_enums,
-        message: "{VALUE} is not among permitted enum values",
-      },
-    },
     product_description: { type: String, required: true },
     product_images: { type: Array, required: false, default: [] },
     product_likes: {
@@ -76,7 +53,7 @@ const productSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
-    restaurant_mb_id: {
+    brand_mb_id: {
       type: Schema.Types.ObjectId,
       ref: "Member",
       required: false,
@@ -85,9 +62,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-productSchema.index(
-  { restaurant_mb_id: 1, product_name: 1, product_size: 1, product_volume: 1 },
-  { unique: true }
-);
+productSchema.index({ brand_mb_id: 1, product_name: 1 }, { unique: true });
 
 module.exports = mongoose.model("Product", productSchema);

@@ -55,7 +55,7 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 // routing codes
-app.use("/resto", router_bssr);
+app.use("/brand", router_bssr);
 app.use("/", router);
 
 const server = http.createServer(app);

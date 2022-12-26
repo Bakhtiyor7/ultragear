@@ -10,7 +10,7 @@
   background: #2c261e;
 }
 
-.restaurant_menu_frame .restaurant_container {
+.restaurant_menu_frame .restaurant_menu_frame_container {
   position: relative;
   margin-top: 100px;
   width: 1320px;

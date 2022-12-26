@@ -7,13 +7,13 @@
     <div class="group_name">
       <ul class="nav justify-content-center">
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/resto">Home</a>
+          <a class="nav-link active" href="/brand">Home</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/resto/all-restaurant">AllResto</a>
+          <a class="nav-link" href="/brand/all-brand">AllBrand</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/resto/logout">Logout</a>
+          <a class="nav-link" href="/brand/logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -21,20 +21,20 @@
     <div class="restaurant_menu_frame">
       <div class="restaurant_container">
         <div class="resto_table">
-          <span class="new_dish_txt"> Barcha Restoranlar Ro'yhati </span>
+          <span class="new_dish_txt"> Barcha Brendlar Ro'yhati </span>
 
           <table class="table table-hover table-sm">
             <thead class="thead-light">
               <tr class="thead-light">
                 <th scope="col">T/r</th>
-                <th scope="col">Restoran nomi</th>
-                <th scope="col">Restoran Telefon Raqami</th>
-                <th scope="col">Restoran TOP</th>
-                <th scope="col">Restoran Holati</th>
+                <th scope="col">Brend nomi</th>
+                <th scope="col">Brend Telefon Raqami</th>
+                <th scope="col">Brend TOP</th>
+                <th scope="col">Brend Holati</th>
               </tr>
             </thead>
 
-            <% restaurants_data.map(function(value, key) { %>
+            <% brands_data.map(function(value, key) { %>
             <tbody style="background: white">
               <td><%= key + 1 %></td>
               <td><%= value.mb_nick %></td>
@@ -66,14 +66,14 @@
 
     $(function() {
 
-      // manipualte restaurants top features
+      // manipualte brands top features
 
     $(".mb_top").on('change', function(e) {
       const id = e.target.id;
       const mb_top = e.target.checked ? 'Y' : 'N';
       
 
-      axios.post("/resto/all-restaurant/edit", {id: id, mb_top: mb_top})
+      axios.post("/brand/all-brand/edit", {id: id, mb_top: mb_top})
       .then(response => {
         const result = response.data;
         if(result.state === 'success') {
@@ -92,7 +92,7 @@
       console.log('mb_status:', mb_status);
       
 
-      axios.post("/resto/all-restaurant/edit", {id: id, mb_status: mb_status})
+      axios.post("/brand/all-brand/edit", {id: id, mb_status: mb_status})
       .then(response => {
         const result = response.data;
         if(result.state === 'success') alert('Successfully Updated');
