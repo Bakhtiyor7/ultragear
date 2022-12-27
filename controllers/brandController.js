@@ -83,7 +83,7 @@ brandController.signupProcess = async (req, res) => {
     assert(req.file, Definer.general_err1);
 
     req.session.member = result;
-    res.redirect("/products/menu");
+    res.redirect("/brand/products/menu");
   } catch (err) {
     console.log(`ERROR, cont/sign-up, ${err.message}`);
     res.json({ state: "fail", message: err.message });
