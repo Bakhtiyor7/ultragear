@@ -123,31 +123,6 @@ class Member {
     }
   }
 
-  async viewChosenItemByMember(member, view_ref_id, group_type) {
-    try {
-      view_ref_id = shapeIntoMongooseObjectId(view_ref_id);
-      const mb_id = shapeIntoMongooseObjectId(member._id);
-
-      const view = new View(mb_id);
-      const isValid = await view.validateChosenTarget(view_ref_id, group_type);
-      console.log("isValid:", isValid);
-      assert.ok(isValid, Definer.general_err2);
-
-      // logged user has seen target before
-      const doesExist = await view.checkViewExistence(view_ref_id);
-      console.log("doesExist:::", doesExist);
-
-      if (!doesExist) {
-        const result = await view.insertMemberView(view_ref_id, group_type);
-        assert.ok(result, Definer.general_err1);
-      }
-
-      return true;
-    } catch (err) {
-      throw err;
-    }
-  }
-
   async likeChosenItemByMember(member, like_ref_id, group_type) {
     try {
       like_ref_id = shapeIntoMongooseObjectId(like_ref_id);
