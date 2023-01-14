@@ -3,7 +3,6 @@ dotenv.config(); // ESDAN CHIQARMANG !!!!!!!!!
 
 const mongoose = require("mongoose");
 
-let db;
 const connectionString = process.env.MONGO_URL;
 
 mongoose.connect(
