@@ -12,35 +12,35 @@
   >
     <div class="login_frame" style="width: 650px; height: 730px">
       <div class="login_top">
-        <span>Ro'yhatdan o'tish</span>
+        <span>Signup</span>
         <div>
-          Bosh sahifaga qaytish <a href="/brand" style="color: #6440fb">Home</a>
+          Go back to Homepage <a href="/brand" style="color: #6440fb">Home</a>
         </div>
         <p>
-          Ro'yhatdan allaqachon o'tganmisiz?
+          Already registered?
           <a href="/brand/login" style="color: #6440fb">Login</a>
         </p>
       </div>
 
       <div class="sign_input_frame">
         <div class="sign_up_frame">
-          <label for="">Foydalanuvchining ismi</label>
+          <label for="">User Name</label>
           <input
             type="text"
             name="mb_nick"
             class="mb_nick"
-            placeholder="Foydalanuvchining ismi"
+            placeholder="Name"
             value=""
             required
           />
         </div>
         <div class="sign_up_frame">
-          <label for="">Telefon raqam</label>
+          <label for="">Phone Number</label>
           <input
             type="text"
             name="mb_phone"
             class="mb_phone"
-            placeholder="Telefon raqam"
+            placeholder="number"
             value=""
             required
           />
@@ -60,12 +60,12 @@
           />
         </div>
         <div class="sign_up_frame">
-          <label for="">Passwordni qayta kiriting</label>
+          <label for="">Insert Password again</label>
           <input
             type="password"
             name="mb_confirm_password"
             class="mb_confirm_password"
-            placeholder="passwordni tasdiqlash"
+            placeholder="confirm password"
             value=""
             required
           />
@@ -74,16 +74,16 @@
 
       <div class="login_input_frame">
         <div class="media-frame">
-          <img class="upload_img_frame" src="/images/default_resto.jpeg" />
+          <img class="upload_img_frame" src="/images/default_image.svg" />
           <div class="upload_container">
-            <span class="media_text">Brend Rasmi</span>
+            <span class="media_text">Brand logo</span>
             <div class="filebox bs3-primary preview-image">
               <input
                 class="upload-name"
-                value="Rasmni tanlang"
+                value="Choose image"
                 disabled="disabled"
               />
-              <label for="input_file">Rasm yuklash</label>
+              <label for="input_file">Upload Image</label>
               <input
                 type="file"
                 id="input_file"
@@ -92,15 +92,15 @@
               />
             </div>
             <p class="thumbnail_desc">
-              Oshxona rasmingizni bu yerga yuklang. <br />Muhim kor'rsatmalar:
-              .jpg, .jpeg, yoki png. <br />rasmda matn yo'q bo'lishi shart!
+              Upload your logo here. <br />Important notice:
+              only .jpg, .jpeg, yoki png. <br />are supported!
             </p>
           </div>
         </div>
       </div>
 
       <button class="login_btn btn" name="signup" type="submit">
-        Ro'yhatdan o'tish
+       Signup
       </button>
     </div>
   </form>
