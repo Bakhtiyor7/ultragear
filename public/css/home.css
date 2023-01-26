@@ -1,16 +1,17 @@
+* {
+  margin: 0;
+  padding: 0; 
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  
-  margin: 0;
-  overflow: hidden;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
-  background-size: cover;
-  backdrop-filter:  brightness(50%);
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .group_name {
@@ -22,60 +23,124 @@ body {
   font-family: monospace;
 }
 
-.animation-wrapper {
-  width: 50%;
-  padding-bottom: 50%;
-}
+/* animejs css starts here */
 
-.sphere-animation {
+body {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 70px;
+  line-height: 1em;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 5vh auto;
+  height: 90vh;
+  box-shadow: 8px 10px 24px 0 #00000030;
+  border-radius: 20px;
+  background: #f8f8f6;
+}
+.left {
+  width: 62%;
+}
+.scene {
+  width: 100%;
+  margin: 5% 0;
+  height: 90%;
+  position: relative;
+  overflow: hidden;
+}
+.overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 580px;
-  height: 580px;
-  margin: -290px 0 0 -290px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: url('https://skay-moon-diary.netlify.app/images/curtain.png') no-repeat center center/cover;
+}
+.sky {
+  height: 55%;
+  width: 100%;
+  background: linear-gradient(180deg, #000000, #242835);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.sea {
+  height: 45%;
+  width: 100%;
+  background: linear-gradient(180deg, #2F3141, #000000);
+  position: relative;
+}
+.sky svg {
+  z-index: 1;
+}
+.layerone, .layertwo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.layertwo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  justify-content: space-around;
+}
+.craters {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  z-index: 2;
+}
+.red svg {
+  fill: #DF0207;
+}
+.blue svg {
+  fill: #B3CFD8;
+}
+.red .craters {
+  background: url(https://skay-moon-diary.netlify.app/images/craters-red.png) no-repeat center center/contain;
+}
+.blue .craters {
+  background: url(https://skay-moon-diary.netlify.app/images/craters-blue.png) no-repeat center center/contain;
+}
+.right {
+  width: 38%;
+  font-family: 'Satisfy', cursive;
+  display: flex;  
+  align-items: center;  
+  justify-content: center;
+  text-align: center;
 }
 
-.sphere path {
-  fill: url(#sphereGradient);
-  stroke-width: 1px;
-  stroke: rgba(80, 80, 80, 0.35);
-  backface-visibility: hidden;
-}
-
-@media (min-width: 500px) {
-  .sphere path {
-    stroke-width: 0.4px;
+@media(max-width: 1024px) {
+  .wrapper {
+    flex-wrap: wrap-reverse;
+  }
+  .left, .right {
+    width: 100%;
+  }
+  .right {
+    padding: 50px 20px 0;
   }
 }
-
-canvas {
-  display: block;
-}
-
-#canvas_container {
-  width: 100%;
-  height: 100vh;
-}
-
-button {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  padding: 0.5rem 0.9em;
-  background: #000000;
-  color: white;
-  -webkit-font-smoothing: antialiased;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all .3s;
-}
-
-button:hover {
-  background: #ffffff;
-  color: #000000;
+@media(max-width: 480px) {
+  .right {
+    padding: 30px 20px 10px;
+  }
+  h1 {
+    font-size: 48px;
+  }
+  .scene {
+    height: 100%;
+    margin: 0;
+  }
 }
