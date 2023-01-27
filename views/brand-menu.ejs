@@ -218,7 +218,7 @@
 
         if(brand_mb_id == '' || product_name == '' || product_price == '' || product_left_cnt == '' || 
           product_collection == '' || product_description == '' || product_status == '' ) {
-            alert(`Iltimos hamma ma'lumotlarni kiriting!`);
+            alert(`Please submit all informations correctly!`);
             return false;
           } else return true;
     }
@@ -228,10 +228,10 @@
       const image_class_name = input.className;
       const file = $(`.${image_class_name}`).get(0).files[0],
       fileType = file['type'],
-      validImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+      validImageTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'];
 
       if(!validImageTypes.includes(fileType)) {
-        alert(`Iltimos ruhsat etilgan formatdagi rasmlarni yuklang: jpg, jpeg, png`);
+        alert(`Please upload in allowed formats: jpg, jpeg, png, webp`);
       } else {
         if(file) {
           let reader = new FileReader();
