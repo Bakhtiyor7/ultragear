@@ -53,6 +53,14 @@ const productSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
+    product_size: {
+      type: String,
+      required: false,
+    },
+    memory_size: {
+      type: Number,
+      required: false,
+    },
     brand_mb_id: {
       type: Schema.Types.ObjectId,
       ref: "Member",

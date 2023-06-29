@@ -1,4 +1,4 @@
-console.log("Web Serverni boshlash");
+console.log("Starting the Web Server");
 const http = require("http");
 const express = require("express");
 const app = express();
@@ -45,7 +45,7 @@ app.use(
   })
 );
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.member = req.session.member;
   next();
 });
@@ -68,19 +68,19 @@ const io = require("socket.io")(server, {
 });
 
 let online_users = 0;
-io.on("connection", function(socket) {
+io.on("connection", function (socket) {
   online_users++;
   console.log("New user, total:", online_users);
   socket.emit("greetMsg", { text: "welcome" });
   io.emit("infoMsg", { total: online_users });
 
-  socket.on("disconnect", function() {
+  socket.on("disconnect", function () {
     online_users--;
     socket.broadcast.emit("infoMsg", { total: online_users });
     console.log("client disconnected, total:", online_users);
   });
 
-  socket.on("createMsg", function(data) {
+  socket.on("createMsg", function (data) {
     console.log("createMsg:", data);
     io.emit("newMsg", data);
   });

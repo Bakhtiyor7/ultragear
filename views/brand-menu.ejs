@@ -32,6 +32,8 @@
               <th scope="col">Product count</th>
               <th scope="col">Product Price</th>
               <th scope="col">Product availability</th>
+              <th scope="col">Product size</th>
+              <th scope="col">Memory size</th>
               <th scope="col">Product status</th>
             </thead>
 
@@ -40,9 +42,11 @@
               <td><%= key + 1 %></td>
               <td><%= value.product_name %></td>
               <td><%= value.product_collection %></td>
-              <td> <%= value.product_collection %></td>
+              <td> <%= value.product_count %></td>
               <td><%= value.product_price %></td>
               <td><%= value.product_left_cnt %></td>
+              <td><%= value.product_size %></td>
+              <td><%= value.memory_size %></td>
               <td>
                 <select class="spec_select new_product_status" id="<%= value._id %>">
                   <option value="PAUSED"<%= value.product_status === 'PAUSED' ? 'selected' : '' %> >PAUSED</option>
@@ -94,30 +98,29 @@
               <option value="mouse">Mouse</option>
               <option value="headset">headset</option>
               <option value="earphone">earphone</option>
+              <option value="monitor">monitor</option>
+              <option value="laptop">laptop</option>
               <option value="etc">other</option>
             </select>
           </div>
 
-          <!-- <div class="half_input" id="product_size">
-            <label>Product count</label>
+          <div class="half_input">
+            <label>Product size</label>
             <select class="product_size" name="product_size">
-              <option value="small">Kichik</option>
-              <option value="normal" selected>O'rtacha</option>
-              <option value="large">Katta</option>
-              <option value="set">Set</option>
+              <option value="32">32 inches</option>
+              <option value="27">27 inches</option>
+              <option value="24">24 inches</option>
+              <option value="16">16 inches</option>
+              <option value="14">14 inches</option>
+              <option value="13">13 inches</option>
             </select>
           </div>
 
-          <div class="half_input" id="product_volume" style="display: none;">
-            <label>Ichimlik Hajmi</label>
-            <select class="product_volume" name="product_volume">
-              <option value="0.5">0.5 litr</option>
-              <option value="1" selected>1 litr</option>
-              <option value="1.2">1.2 litr</option>
-              <option value="1.5">1.5 litr</option>
-              <option value="2">2 litr</option>
-            </select>
-          </div> -->
+        </div>
+
+        <div style="margin-bottom: 25px;">
+          <label style="margin-top: 20px; color: white; font-family: GT Walsheim Pro;">Memory Size</label>
+          <input type="number" placeholder="Memory Size" name="memory_size" class="product_name">
         </div>
 
         <div class="long_input">
@@ -214,10 +217,12 @@
         product_left_cnt= $(".product_left_cnt").val(),
         product_collection = $(".product_collection").val(),
         product_description = $(".product_description").val(),
-        product_status = $(".product_status").val();
+        product_status = $(".product_status").val(),
+        product_size = $(".product_size").val(),
+        memory_size = $(".memory_size").val()
 
         if(brand_mb_id == '' || product_name == '' || product_price == '' || product_left_cnt == '' || 
-          product_collection == '' || product_description == '' || product_status == '' ) {
+          product_collection == '' || product_description == '' || product_status == '' || product_size == '' || memory_size == '') {
             alert(`Please submit all informations correctly!`);
             return false;
           } else return true;

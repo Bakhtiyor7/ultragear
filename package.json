@@ -1,9 +1,10 @@
 {
   "name": "ultragear",
   "version": "1.0.0",
-  "description": "bu bizning delivery loyihamiz",
+  "description": "Ultragear online shopping market",
   "main": "server.js",
   "scripts": {
+    "build": "yarn run webpack",
     "start": "node server.js",
     "dev": "nodemon server.js",
     "train": "nodemon train.js",
