@@ -45,7 +45,7 @@ productController.addProductComment = async (req, res) => {
       product_id,
       comment_content,
       mb_id: req.member,
-    });
+    }); //test
 
     const savedComment = await productComment.save();
     assert.ok(savedComment, Definer.comment_err3);
