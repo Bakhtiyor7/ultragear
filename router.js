@@ -47,6 +47,12 @@ router.get(
   productController.getChosenProduct
 );
 
+router.post(
+  "/add-product-comment",
+  memberController.retrieveAuthMember,
+  productController.addProductComment
+);
+
 // Brand related routers
 
 router.get(
