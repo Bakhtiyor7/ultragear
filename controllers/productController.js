@@ -3,6 +3,7 @@ const assert = require("assert");
 const Definer = require("../lib/mistake");
 const product_commentModel = require("../schema/product_comment.model");
 const productModel = require("../schema/product.model");
+const productComment = require("../schema/product_comment.model");
 
 let productController = module.exports;
 
@@ -45,7 +46,7 @@ productController.addProductComment = async (req, res) => {
       product_id,
       comment_content,
       mb_id: req.member,
-    }); //test
+    });
 
     const savedComment = await productComment.save();
     assert.ok(savedComment, Definer.comment_err3);
@@ -62,6 +63,23 @@ productController.addProductComment = async (req, res) => {
     res.json({ state: "success", data: savedComment });
   } catch (err) {
     console.log(`ERROR, cont/addProductComment, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+productController.getAllProductComments = async (req, res) => {
+  try {
+    console.log("GET: cont/getAllProductComments");
+
+    const { product_id } = req.params;
+
+    assert.ok(product_id, Definer.comment_err4);
+
+    const comments = await productComment.find({ product_id }).exec();
+
+    res.json({ state: "success", data: comments });
+  } catch (err) {
+    console.log(`ERROR, cont/getAllProductComments, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
