@@ -58,6 +58,12 @@ const productSchema = new mongoose.Schema(
       ref: "Member",
       required: false,
     },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "ProductComment",
+      },
+    ],
   },
   { timestamps: true }
 );

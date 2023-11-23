@@ -99,7 +99,6 @@ class Community {
         ])
         .exec();
 
-      console.log("result:::", result);
       assert.ok(result, Definer.article_err3);
 
       return result;

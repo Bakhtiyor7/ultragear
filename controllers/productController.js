@@ -1,6 +1,9 @@
 const Product = require("../models/Product");
 const assert = require("assert");
 const Definer = require("../lib/mistake");
+const product_commentModel = require("../schema/product_comment.model");
+const productModel = require("../schema/product.model");
+const productComment = require("../schema/product_comment.model");
 
 let productController = module.exports;
 
@@ -26,6 +29,57 @@ productController.getChosenProduct = async (req, res) => {
     res.json({ state: "success", data: result });
   } catch (err) {
     console.log(`ERROR, cont/getChosenProduct, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+productController.addProductComment = async (req, res) => {
+  try {
+    console.log("POST: cont/addProductComment");
+
+    const { product_id, comment_content } = req.body;
+
+    assert.ok(product_id, Definer.comment_err1);
+    assert.ok(comment_content, Definer.comment_err2);
+
+    const productComment = new product_commentModel({
+      product_id,
+      comment_content,
+      mb_id: req.member,
+    });
+
+    const savedComment = await productComment.save();
+    assert.ok(savedComment, Definer.comment_err3);
+
+    // Update the product to include the new comment
+    const updatedProduct = await productModel.findByIdAndUpdate(
+      product_id,
+      { $push: { comments: savedComment._id } },
+      { new: true }
+    );
+
+    assert.ok(updatedProduct, Definer.comment_err1);
+
+    res.json({ state: "success", data: savedComment });
+  } catch (err) {
+    console.log(`ERROR, cont/addProductComment, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+productController.getAllProductComments = async (req, res) => {
+  try {
+    console.log("GET: cont/getAllProductComments");
+
+    const { product_id } = req.params;
+
+    assert.ok(product_id, Definer.comment_err4);
+
+    const comments = await productComment.find({ product_id }).exec();
+
+    res.json({ state: "success", data: comments });
+  } catch (err) {
+    console.log(`ERROR, cont/getAllProductComments, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
