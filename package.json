@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "train": "nodemon train.js",
     "start:prod": "node server.js && NODE_ENV=production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Bakhtiyor",
   "license": "ISC",
@@ -30,5 +30,8 @@
     "prettierrc": "^0.0.0-5",
     "socket.io": "^2.3.0",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
