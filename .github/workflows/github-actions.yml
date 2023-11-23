@@ -1,6 +1,6 @@
 
-yaml
-name: Ultragear backend CI
+name: Node.js CI
+
 on:
   push:
     branches:
