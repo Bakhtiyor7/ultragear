@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "train": "nodemon train.js",
     "start:prod": "node server.js && NODE_ENV=production",
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bakhtiyor",
   "license": "ISC",
