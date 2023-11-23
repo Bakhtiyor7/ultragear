@@ -6,7 +6,7 @@ services:
     restart: always
     image: node:16.10.0
     ports:
-      - 4000:3003
+      - 3003:3003
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app
