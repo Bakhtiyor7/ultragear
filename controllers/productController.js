@@ -125,4 +125,4 @@ productController.updateChosenProduct = async (req, res) => {
   } catch (err) {
     console.log(`ERROR, cont/updateChoosenProduct, ${err.message}`);
   }
-}; //test
+}; //test2
