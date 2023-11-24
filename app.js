@@ -26,7 +26,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: "http://ultragear.uz",
+    origin: true,
   })
 );
 app.use(cookieParser());
@@ -63,7 +63,7 @@ const server = http.createServer(app);
 /** SOCKET IO BACKEND SERVER */
 const io = require("socket.io")(server, {
   serveClient: false,
-  origins: "http://ultragear.uz",
+  origins: "*:*",
   transport: ["websocket", "xhr-polling"],
 });
 
