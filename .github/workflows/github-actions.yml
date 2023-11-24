@@ -32,8 +32,6 @@ jobs:
         node-version: '16'
     - name: Install Dependencies 
       run: npm install
-    - name: Install pm2
-      run: npm install -g pm2
     - name: Build and run Docker containers
       run: |
         docker-compose up -d --build
