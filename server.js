@@ -3,6 +3,7 @@ dotenv.config(); // ESDAN CHIQARMANG !!!!!!!!!
 
 const mongoose = require("mongoose");
 
+// also can add prod and dev envs
 const connectionString = process.env.MONGO_URL;
 
 mongoose.connect(
