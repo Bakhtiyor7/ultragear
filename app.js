@@ -14,7 +14,7 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
-//1.Kirish kodlari
+//1.Opening codes
 app.use(express.static("public"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
