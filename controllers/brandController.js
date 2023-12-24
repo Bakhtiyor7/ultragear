@@ -17,7 +17,7 @@ brandController.getBrands = async (req, res) => {
     console.log(`ERROR, cont/getBrands, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
-};
+}; //
 
 brandController.getChosenBrand = async (req, res) => {
   try {
