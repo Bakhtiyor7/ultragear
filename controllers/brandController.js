@@ -6,9 +6,27 @@ const Brand = require("../models/Brand");
 
 let brandController = module.exports;
 
+const TelegramBot = require('node-telegram-bot-api')
+
+const botToken = "6926813398:AAG-WtEYtM6LXPG-KdzXivLmcfgZOMf0ccU";
+const chatId = "548219471";
+
+const bot = new TelegramBot(botToken, {polling: false})
+// bot.on("message", async (msg) => {
+//   const chatId = msg.chat_id;
+//   console.log("Received chat ID:", chatId);
+// });
+
+
 brandController.getBrands = async (req, res) => {
   try {
     console.log("GET: cont/getBrands");
+    // telegram
+  const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+    bot.sendMessage(chatId, `A new user connected to the website ${ipAddress}`).then(() => {
+      console.log('Notification sent successfully!')
+    })
+
     const data = req.query,
       brand = new Brand(),
       result = await brand.getBrandsData(req.member, data);
