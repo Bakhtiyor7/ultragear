@@ -7,6 +7,12 @@ const router_bssr = require("./router_bssr.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+const TelegramBot = require('node-telegram-bot-api')
+const botToken = "6926813398:AAG-WtEYtM6LXPG-KdzXivLmcfgZOMf0ccU";
+const chatId = "548219471";
+const bot = new TelegramBot(botToken, {polling: false})
+
+
 let session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const store = new MongoDBStore({
@@ -71,6 +77,13 @@ let online_users = 0;
 io.on("connection", function(socket) {
   online_users++;
   console.log("New user, total:", online_users);
+
+  // telegram notification
+    const ipAddress = socket.handshake.headers['x-forwarded-for'] || socket.handshake.remoteAddress
+    bot.sendMessage(chatId, `A new user connected to the website ${ipAddress}`).then(() => {
+        console.log('Notification sent successfully!')
+    })
+
   socket.emit("greetMsg", { text: "welcome" });
   io.emit("infoMsg", { total: online_users });
 
