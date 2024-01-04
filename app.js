@@ -79,8 +79,8 @@ io.on("connection", function(socket) {
   console.log("New user, total:", online_users);
 
   // telegram notification
-    const ipAddress = socket.handshake.headers['x-forwarded-for'] || socket.handshake.remoteAddress
-    bot.sendMessage(chatId, `A new user connected to the website ${ipAddress}`).then(() => {
+  const ipAddress = socket.request.connection.remoteAddress
+  bot.sendMessage(chatId, `A new user connected to the website ${ipAddress}`).then(() => {
         console.log('Notification sent successfully!')
     })
 
