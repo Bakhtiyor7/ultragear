@@ -80,7 +80,12 @@ io.on("connection", function(socket) {
 
   // telegram notification
   const ipAddress = socket.request.connection.remoteAddress
-  bot.sendMessage(chatId, `A new user connected to the website ${ipAddress}`).then(() => {
+  const userAgent = socket.request.headers['user-agent']
+  const referrer = socket.handshake.headers.referer
+  bot.sendMessage(chatId, `- A new user connected to the website.
+  - IP Address:   ${ipAddress}.
+  - User Agent:   ${userAgent}.
+  - Referrer:   ${referrer}`).then(() => {
         console.log('Notification sent successfully!')
     })
 
