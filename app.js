@@ -7,11 +7,10 @@ const router_bssr = require("./router_bssr.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-const TelegramBot = require('node-telegram-bot-api')
-const botToken = "6926813398:AAG-WtEYtM6LXPG-KdzXivLmcfgZOMf0ccU";
-const chatId = "548219471";
-const bot = new TelegramBot(botToken, {polling: false})
-
+// const TelegramBot = require("node-telegram-bot-api");
+// const botToken = "6926813398:AAG-WtEYtM6LXPG-KdzXivLmcfgZOMf0ccU";
+// const chatId = "548219471";
+// const bot = new TelegramBot(botToken, { polling: false });
 
 let session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
@@ -79,15 +78,15 @@ io.on("connection", function(socket) {
   console.log("New user, total:", online_users);
 
   // telegram notification
-  const ipAddress = socket.request.connection.remoteAddress
-  const userAgent = socket.request.headers['user-agent']
-  const referrer = socket.handshake.headers.referer
-  bot.sendMessage(chatId, `- A new user connected to the website.
-  - IP Address:   ${ipAddress}.
-  - User Agent:   ${userAgent}.
-  - Referrer:   ${referrer}`).then(() => {
-        console.log('Notification sent successfully!')
-    })
+  // const ipAddress = socket.request.connection.remoteAddress
+  // const userAgent = socket.request.headers['user-agent']
+  // const referrer = socket.handshake.headers.referer
+  // bot.sendMessage(chatId, `- A new user connected to the website.
+  // - IP Address:   ${ipAddress}.
+  // - User Agent:   ${userAgent}.
+  // - Referrer:   ${referrer}`).then(() => {
+  //       console.log('Notification sent successfully!')
+  //   })
 
   socket.emit("greetMsg", { text: "welcome" });
   io.emit("infoMsg", { total: online_users });
